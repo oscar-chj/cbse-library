@@ -1,97 +1,43 @@
-# Library Catalog Management System
+# Library Catalog Management System (Java EE Edition)
 
-A web-based book catalog management system built with **Spring Boot**, **Vaadin**, and **MySQL**. This application provides a modern UI for managing a library's book catalog along with a RESTful API for programmatic access.
-
----
-
-## Tech Stack
-
-| Layer       | Technology                  |
-| ----------- | --------------------------- |
-| Backend     | Spring Boot 3.5.0           |
-| Frontend/UI | Vaadin 24.7.3               |
-| Database    | MySQL 8.0                   |
-| ORM         | Spring Data JPA / Hibernate |
-| Build       | Maven                       |
-| Deployment  | Docker & Docker Compose     |
+A lightweight, web-based book catalog management system designed by strictly applying **Component-Based Software Engineering (CBSE)** principles. The application implements a decoupled, three-tier architecture utilizing the official Java EE 8 Framework.
 
 ---
 
-## Prerequisites
+## Technology Stack & CBSE Mapping
 
-- **Docker** and **Docker Compose** (for containerized setup — recommended)
-- **JDK 17+** and **Maven** (only if running locally without Docker)
+This application maps enterprise architectural boundaries directly onto standard Java EE components:
+
+| Architectural Tier | CBSE Technology | Role & Responsibility |
+| :--- | :--- | :--- |
+| **Presentation Tier** | **JSF 2.3 & PrimeFaces 12** | Human-interaction layer rendering reusable component-based UI controls, capturing inputs, and delegating requests. |
+| **Business Tier** | **Stateless Session EJBs** | Core transactional processing and catalog logic boundary, completely decoupled from the view representation. |
+| **Integration Tier** | **JAX-RS 2.1 Web Services** | Machine-to-machine integration layer publishing stateless session bean capabilities as raw JSON API endpoints. |
+| **Data & Persistence** | **JPA 2.2 & EclipseLink** | Object-Relational Mapping (ORM) handling query executions and entity transactions with the MySQL server. |
+| **Application Server** | **Payara Server 5 (GlassFish)** | Production-ready Java EE 8 application container managing component lifecycles, CMT, and resources. |
+| **Database Server** | **MySQL 8.0** | Relational database storage holding the catalog dataset. |
 
 ---
 
-## Quick Start
+## Core System Architecture
 
-### Using Docker (Recommended)
+The application strictly enforces a Decoupled Three-Tier Layered Architecture:
 
-**Linux / macOS / Git Bash:**
-
-```bash
-chmod +x setup.sh
-./setup.sh
 ```
-
-**Windows (Command Prompt):**
-
-```cmd
-setup.bat
+┌──────────────────────────────────────┐
+│        JSF Facelets UI (XHTML)       │  ← Presentation view (catalog.xhtml)
+├──────────────────────────────────────┤
+│       JSF ViewScoped Controller      │  ← MVC boundary (BookController.java)
+├──────────────────────────────────────┤
+│        REST Web Service API          │  ← JAX-RS endpoint (BookRestService.java)
+├──────────────────────────────────────┤
+│       Stateless Session Bean         │  ← EJB Business layer (BookServiceBean.java)
+├──────────────────────────────────────┤
+│        JPA Entity & EntityManager    │  ← Data Access layer (Book.java)
+├──────────────────────────────────────┤
+│           MySQL Database             │  ← Relational persistent storage
+└──────────────────────────────────────┘
 ```
-
-This will:
-
-1. Build the application Docker image
-2. Start a MySQL 8.0 database container
-3. Start the application container
-4. Tail the application logs
-
-### Access Points
-
-| Endpoint | URL                                                                              |
-| -------- | -------------------------------------------------------------------------------- |
-| Web UI   | [http://localhost:8080](http://localhost:8080)                                   |
-| REST API | [http://localhost:8080/api/books/{isbn}](http://localhost:8080/api/books/{isbn}) |
-
----
-
-## Stopping the Application
-
-**Keep data** (MySQL volume preserved):
-
-```bash
-docker compose down
-```
-
-**Delete everything** (including database data):
-
-```bash
-docker compose down -v
-```
-
----
-
-## Local Development (Without Docker)
-
-> Requires **JDK 17+** and a running **MySQL** instance on `localhost:3306`.
-
-1. Create a MySQL database named `library_db` with user `libraryuser` / password `librarypass`, or update `src/main/resources/application.properties` with your own credentials.
-
-2. Run the application:
-
-   ```bash
-   ./mvnw spring-boot:run
-   ```
-
-   On Windows:
-
-   ```cmd
-   mvnw.cmd spring-boot:run
-   ```
-
-3. Open [http://localhost:8080](http://localhost:8080) in your browser.
 
 ---
 
@@ -99,61 +45,109 @@ docker compose down -v
 
 ```
 cbse-library/
-├── pom.xml                          # Maven build configuration
-├── Dockerfile                       # Multi-stage Docker build
-├── docker-compose.yml               # Docker Compose (app + MySQL)
-├── setup.sh / setup.bat             # One-command startup scripts
-├── src/
-│   └── main/
-│       ├── java/com/upm/library/
-│       │   ├── LibraryApplication.java      # Spring Boot entry point
-│       │   ├── model/                       # JPA entity classes
-│       │   │   └── Book.java
-│       │   ├── repository/                  # Spring Data JPA repositories
-│       │   │   └── BookRepository.java
-│       │   ├── service/                     # Business logic layer
-│       │   │   └── BookService.java
-│       │   ├── controller/                  # REST API controllers
-│       │   │   └── BookController.java
-│       │   └── view/                        # Vaadin UI views
-│       │       └── BookListView.java
-│       └── resources/
-│           └── application.properties       # App configuration
-└── README.md
-```
-
-### Layered Architecture
-
-```
-┌──────────────────────────────────┐
-│           Vaadin UI              │  ← Browser-based UI (views)
-├──────────────────────────────────┤
-│         REST Controller          │  ← RESTful API endpoints
-├──────────────────────────────────┤
-│          Service Layer           │  ← Business logic & validation
-├──────────────────────────────────┤
-│        Repository Layer          │  ← Spring Data JPA (data access)
-├──────────────────────────────────┤
-│       MySQL Database             │  ← Persistent storage
-└──────────────────────────────────┘
+├── pom.xml                          # Maven build configuration (Java EE 8, PrimeFaces 12)
+├── Dockerfile                       # Multi-stage Java 8 build & Payara JRE 8 deployment
+├── docker-compose.yml               # Container configurations (Payara app + MySQL db)
+├── setup.sh / setup.bat             # Automate startup scripts
+└── src/
+    └── main/
+        ├── java/my/upm/library/
+        │   ├── business/
+        │   │   ├── BookServiceBean.java     # EJB Stateless Session Bean
+        │   │   └── DatabaseSeeder.java      # Singleton Startup EJB (Automatic Seeding)
+        │   ├── integration/
+        │   │   ├── RestApplication.java     # JAX-RS REST config path
+        │   │   └── BookRestService.java     # REST Controller Endpoint
+        │   ├── persistence/
+        │   │   └── Book.java                # JPA Entity mapped to MySQL "books" table
+        │   └── presentation/
+        │       └── BookController.java      # JSF Named Managed Bean
+        ├── resources/
+        │   └── META-INF/
+        │       └── persistence.xml          # JPA Persistence unit configuration
+        └── webapp/
+            ├── catalog.xhtml                # PrimeFaces Dark Mode & Glassmorphic UI
+            └── WEB-INF/
+                ├── web.xml                  # Web deployment descriptor
+                └── faces-config.xml         # JSF configuration descriptor
 ```
 
 ---
 
-## Use Cases
+## Prerequisites
 
-1. **Add a New Book** — Register a new book in the catalog with details such as title, author, ISBN, publisher, and year of publication.
-
-2. **View All Books** — Browse the complete list of books in the library catalog through the Vaadin web UI.
-
-3. **Update Book Details** — Edit existing book information (title, author, publisher, etc.) via the UI.
-
-4. **Delete a Book** — Remove a book entry from the catalog.
-
-5. **Look Up a Book by ISBN (REST API)** — Retrieve book details programmatically via the REST endpoint `GET /api/books/{isbn}`.
+* **Docker** and **Docker Compose**
 
 ---
 
-## License
+## Quick Start
 
-This project is developed for educational purposes as part of a Component-Based Software Engineering course.
+### 1. Build and Run Containerized App
+
+**Windows (Command Prompt):**
+```cmd
+setup.bat
+```
+
+**Linux / macOS / Git Bash:**
+```bash
+docker compose up --build -d
+```
+
+On deployment, the container **automatically** performs the following:
+* Installs standard Java EE dependencies and builds the Web Archive (`library-app.war`).
+* Starts a MySQL 8.0 database container and waits for it to become healthy.
+* Starts a Payara Server 5 container.
+* Automatically provisions database access: dynamically registers the global JNDI DataSource `java:global/jdbc/LibraryDB`.
+* **Seeding**: Executes the singleton startup bean to auto-populate the database with **3 default programming books** (`Effective Java`, `Clean Code`, and `Design Patterns`) if the catalog is initially empty.
+
+---
+
+## Access & Verification Points
+
+| Aspect | Target Access URL |
+| :--- | :--- |
+| **Interactive Web UI** | [http://localhost:8080/library-app/catalog.xhtml](http://localhost:8080/library-app/catalog.xhtml) |
+| **JAX-RS REST API Lookup** | [http://localhost:8080/library-app/api/books/{isbn}](http://localhost:8080/library-app/api/books/{isbn}) |
+| **Payara Admin Console** | `http://localhost:4848` |
+
+> [!TIP]
+> **Payara Admin Credentials**
+> * **Username**: `admin`
+> * **Password**: Retrieve the startup generated password directly by running:
+>   `docker exec library-app cat /opt/payara/passwordFile`
+
+---
+
+## Core Use-Cases Validation Guide
+
+### UC-1: Add New Book
+* **Action**: On the left glassmorphic card, input a title, author, and unique ISBN, and click **Save to Catalog**.
+* **Verification**: Verify a green success Growl notification slides in at the top right. Duplicate ISBN entries are automatically blocked with an error Growl.
+
+### UC-2: View All Books
+* **Action**: Accessing the UI automatically loads the datatable.
+* **Verification**: Verify the 3 seeded books are rendered dynamically inside the right-hand panel datatable on load.
+
+### UC-3: Search Book by Title
+* **Action**: Type search keywords (e.g. `Java` or `Code`) in the search bar and click **Search**.
+* **Verification**: The table grid filters rows instantly. Clicking **Clear** restores the catalog listing.
+
+### UC-4: Delete Book Record
+* **Action**: Click the red **Delete** button next to a book record, and confirm "Yes" in the dialog box.
+* **Verification**: The book is permanently removed from the MySQL catalog, and the datatable refreshes immediately.
+
+### UC-5: Fetch Book Details via Web Service
+* **Action**: Issues an HTTP GET request bypassing the presentation tier entirely (simulated via Postman or cURL):
+  ```bash
+  curl -i http://localhost:8080/library-app/api/books/9780134685991
+  ```
+* **Verification**: Confirm a successful `200 OK` status and the structured JSON payload containing the seeded record details:
+  ```json
+  {
+    "id": 1,
+    "title": "Effective Java",
+    "author": "Joshua Bloch",
+    "isbn": "9780134685991"
+  }
+  ```

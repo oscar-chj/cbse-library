@@ -22,10 +22,7 @@ services:
     build: .
     ports:
       - "8080:8080"
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/library_db?allowPublicKeyRetrieval=true&useSSL=false
-      SPRING_DATASOURCE_USERNAME: libraryuser
-      SPRING_DATASOURCE_PASSWORD: librarypass
+      - "4848:4848"
     depends_on:
       db:
         condition: service_healthy

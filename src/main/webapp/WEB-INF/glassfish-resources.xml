@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE resources PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Resource Definitions//EN" "http://glassfish.org/dtds/glassfish-resources_3_1_1.dtd">
+<resources>
+    <jdbc-connection-pool name="mysql_library_db_Pool"
+                          res-type="javax.sql.DataSource"
+                          datasource-classname="com.mysql.cj.jdbc.MysqlDataSource">
+        <property name="URL" value="jdbc:mysql://db:3306/library_db?allowPublicKeyRetrieval=true&amp;useSSL=false"/>
+        <property name="User" value="libraryuser"/>
+        <property name="Password" value="librarypass"/>
+    </jdbc-connection-pool>
+    <jdbc-resource jndi-name="jdbc/LibraryDB" pool-name="mysql_library_db_Pool"/>
+</resources>
