@@ -10,7 +10,7 @@ target/
 
 # Vaadin
 node_modules/
-frontend/generated/
+src/main/frontend/generated/
 
 # OS
 .DS_Store
