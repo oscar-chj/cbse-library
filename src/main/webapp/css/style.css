@@ -1,0 +1,1002 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+:root {
+  /* 1. Design System Colors */
+  --color-primary: #0066cc;
+  --color-primary-focus: #0071e3;
+  --color-primary-on-dark: #2997ff;
+  --color-ink: #1d1d1f;
+  --color-body-on-dark: #ffffff;
+  --color-body-muted: #cccccc;
+  --color-ink-muted-80: #333333;
+  --color-ink-muted-48: #7a7a7a;
+  --color-divider-soft: rgba(0, 0, 0, 0.04);
+  --color-hairline: #e0e0e0;
+  --color-canvas: #ffffff;
+  --color-canvas-parchment: #f5f5f7;
+  --color-surface-pearl: #fafafc;
+  --color-surface-tile-1: #272729;
+  --color-surface-tile-2: #2a2a2c;
+  --color-surface-tile-3: #252527;
+  --color-surface-black: #000000;
+
+  /* Semantic Colors */
+  --color-on-primary: #ffffff;
+  --color-success: #34c759;
+  --color-warn: #ff9500;
+  --color-error: #ff3b30;
+
+  /* Border Radii */
+  --rounded-none: 0px;
+  --rounded-xs: 5px;
+  --rounded-sm: 8px;
+  --rounded-md: 11px;
+  --rounded-lg: 18px;
+  --rounded-pill: 9999px;
+  --rounded-full: 9999px;
+
+  /* Spacing Scale */
+  --spacing-xxs: 4px;
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 17px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
+  --spacing-section: 80px;
+
+  /* Elevation & Depth */
+  --product-shadow: 3px 5px 30px 0 rgba(0, 0, 0, 0.22);
+}
+
+/* 2. Global Typography Reset & Defaults */
+body {
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  font-size: 17px;
+  line-height: 1.47;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+  background-color: var(--color-canvas);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Display and Hero Headings - letter spacing tightened (-0.02em to -0.01em) */
+h1,
+.hero-display,
+.display-hero {
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  font-size: 56px;
+  font-weight: 600;
+  line-height: 1.07;
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--spacing-sm) 0;
+  color: var(--color-ink);
+}
+
+h2,
+.display-lg {
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin: 0 0 var(--spacing-sm) 0;
+  color: var(--color-ink);
+}
+
+h3,
+.display-md {
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  font-size: 34px;
+  font-weight: 600;
+  line-height: 1.47;
+  letter-spacing: -0.01em;
+  margin: 0 0 var(--spacing-sm) 0;
+  color: var(--color-ink);
+}
+
+/* Sub-headings and taglines */
+.lead {
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.14;
+  letter-spacing: -0.01em;
+}
+
+.lead-airy {
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
+.tagline {
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 1.19;
+  letter-spacing: -0.01em;
+}
+
+/* Body / paragraphs */
+.body-strong,
+strong {
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 1.24;
+  letter-spacing: -0.01em;
+}
+
+.body-text,
+p {
+  font-size: 17px;
+  line-height: 1.47;
+  letter-spacing: -0.01em;
+  margin: 0 0 var(--spacing-sm) 0;
+}
+
+/* Dense link lists - line height relaxed to 2.41 for breathing footer lists per DESIGN.md */
+.dense-link {
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 2.41;
+  letter-spacing: 0;
+  color: var(--color-primary);
+  text-decoration: none;
+  display: inline-block;
+}
+
+.dense-link:hover {
+  text-decoration: underline;
+}
+
+/* Captions and utility labels */
+.caption {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.43;
+  letter-spacing: -0.01em;
+}
+
+.caption-strong {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+}
+
+.fine-print {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--color-ink-muted-48);
+}
+
+.micro-legal {
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--color-ink-muted-48);
+}
+
+/* 3. Component Classes */
+
+/* Global Nav - Thin black nav bar */
+.global-nav {
+  height: 44px;
+  background-color: var(--color-surface-black);
+  color: var(--color-body-on-dark);
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--spacing-lg);
+  box-sizing: border-box;
+  z-index: 1000;
+  width: 100%;
+}
+
+.global-nav a {
+  color: var(--color-body-on-dark);
+  text-decoration: none;
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  transition: opacity 0.2s ease;
+}
+
+.global-nav a:hover {
+  opacity: 0.8;
+}
+
+.global-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Sub Nav - Frosted glass effect, sticky under global-nav */
+.sub-nav-frosted {
+  height: 52px;
+  background-color: rgba(245, 245, 247, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  border-bottom: 1px solid var(--color-hairline);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--spacing-lg);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.sub-nav-title {
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 1.19;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+}
+
+.sub-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.sub-nav-links a {
+  font-size: 14px;
+  color: var(--color-ink);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.sub-nav-links a:hover {
+  color: var(--color-primary);
+}
+
+/* Product Tiles - Vertical padding 80px, centered stack, edge-to-edge */
+.product-tile-light,
+.product-tile-dark,
+.product-tile-parchment {
+  padding: var(--spacing-section) var(--spacing-lg);
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  border-radius: var(--rounded-none);
+}
+
+.product-tile-light {
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+}
+
+.product-tile-parchment {
+  background-color: var(--color-canvas-parchment);
+  color: var(--color-ink);
+}
+
+.product-tile-dark {
+  background-color: var(--color-surface-tile-1);
+  color: var(--color-body-on-dark);
+}
+.product-tile-dark h1,
+.product-tile-dark h2,
+.product-tile-dark h3 {
+  color: var(--color-body-on-dark);
+}
+
+/* Dark Tile Variants */
+.product-tile-dark-2 {
+  background-color: var(--color-surface-tile-2);
+  color: var(--color-body-on-dark);
+  padding: var(--spacing-section) var(--spacing-lg);
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-tile-dark-3 {
+  background-color: var(--color-surface-tile-3);
+  color: var(--color-body-on-dark);
+  padding: var(--spacing-section) var(--spacing-lg);
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Store Utility Card & Book Cover styles */
+.store-utility-card {
+  background-color: var(--color-canvas) !important;
+  color: var(--color-ink) !important;
+  border: 1px solid var(--color-hairline) !important;
+  border-radius: var(--rounded-lg) !important;
+  padding: var(--spacing-lg) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  box-sizing: border-box !important;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease !important;
+}
+
+.store-utility-card:hover {
+  border-color: rgba(0, 102, 204, 0.2) !important;
+}
+
+/* Book Cover Display Container & Image */
+.store-utility-card .book-cover-container {
+  width: 100% !important;
+  aspect-ratio: 3 / 4 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-color: var(--color-canvas-parchment) !important;
+  border-radius: var(--rounded-sm) !important;
+  overflow: hidden !important;
+  margin-bottom: var(--spacing-sm) !important;
+  padding: var(--spacing-sm) !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+}
+
+.store-utility-card .book-cover {
+  width: 100% !important;
+  height: auto !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  aspect-ratio: 3 / 4 !important;
+  object-fit: contain !important;
+  border-radius: var(--rounded-xs) !important;
+  box-shadow: var(--product-shadow) !important;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1) !important;
+}
+
+.store-utility-card:hover .book-cover {
+  transform: translateY(-4px) scale(1.02) !important;
+}
+
+/* Buttons & Links */
+
+/* Primary Action Blue Pill */
+.button-primary {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  border: 1px solid transparent;
+  border-radius: var(--rounded-pill);
+  padding: 11px var(--spacing-lg);
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 400;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.button-primary:hover {
+  background-color: var(--color-primary-focus);
+}
+
+.button-primary:active {
+  transform: scale(0.95);
+}
+
+.button-primary:focus {
+  outline: 2px solid var(--color-primary-focus);
+  outline-offset: 2px;
+}
+
+/* Secondary Ghost Action Blue Pill */
+.button-secondary-pill {
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-primary);
+  border-radius: var(--rounded-pill);
+  padding: 10px var(--spacing-lg);
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 400;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.button-secondary-pill:hover {
+  background-color: rgba(0, 102, 204, 0.04);
+}
+
+.button-secondary-pill:active {
+  transform: scale(0.95);
+}
+
+.button-secondary-pill:focus {
+  outline: 2px solid var(--color-primary-focus);
+  outline-offset: 2px;
+}
+
+/* Dark Utility Button */
+.button-dark-utility {
+  background-color: var(--color-ink);
+  color: var(--color-body-on-dark);
+  border: none;
+  border-radius: var(--rounded-sm);
+  padding: 8px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.button-dark-utility:active {
+  transform: scale(0.95);
+}
+
+/* Pearl Capsule Button */
+.button-pearl-capsule {
+  background-color: var(--color-surface-pearl);
+  color: var(--color-ink-muted-80);
+  border: 3px solid var(--color-divider-soft);
+  border-radius: var(--rounded-md);
+  padding: 8px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.button-pearl-capsule:active {
+  transform: scale(0.95);
+}
+
+/* Store Hero Button */
+.button-store-hero {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  border: none;
+  border-radius: var(--rounded-pill);
+  padding: 14px 28px;
+  font-size: 18px;
+  font-weight: 300;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.button-store-hero:active {
+  transform: scale(0.95);
+}
+
+/* Text Links */
+.text-link {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.text-link:hover {
+  text-decoration: underline;
+}
+
+.text-link-on-dark {
+  color: var(--color-primary-on-dark);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.text-link-on-dark:hover {
+  text-decoration: underline;
+}
+
+/* Inputs & Search */
+.search-input {
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--rounded-pill);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  height: 44px;
+  font-family: inherit;
+  font-size: 17px;
+  line-height: 1.47;
+  box-sizing: border-box;
+  outline: none;
+  width: 100%;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.search-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.15);
+}
+
+/* 4. macOS/iOS Style Toast/Growl Notification (Top-Right) */
+.ui-growl,
+.toast-container {
+  top: 20px !important;
+  right: 20px !important;
+  z-index: 9999 !important;
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif !important;
+}
+
+.ui-growl-item-container,
+.toast-notification {
+  position: relative !important;
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+  border-radius: var(--rounded-md) !important;
+  color: var(--color-ink) !important;
+  padding: var(--spacing-sm) !important;
+  margin-bottom: 12px !important;
+  width: 320px !important;
+  opacity: 1 !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.ui-growl-item {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: var(--spacing-sm) !important;
+}
+
+.ui-growl-image {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 24px !important;
+  height: 24px !important;
+  margin: 0 !important;
+  border-radius: 50% !important;
+  color: #ffffff !important;
+}
+
+.ui-growl-image.ui-growl-image-info {
+  background-color: var(--color-success) !important;
+}
+
+.ui-growl-image.ui-growl-image-warn {
+  background-color: var(--color-warn) !important;
+}
+
+.ui-growl-image.ui-growl-image-error {
+  background-color: var(--color-error) !important;
+}
+
+.ui-growl-message {
+  padding: 0 !important;
+  margin: 0 !important;
+  flex: 1;
+}
+
+.ui-growl-title {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  line-height: 1.3 !important;
+  color: var(--color-ink) !important;
+  margin-bottom: var(--spacing-xxs) !important;
+}
+
+.ui-growl-message p {
+  font-size: 13px !important;
+  line-height: 1.4 !important;
+  color: var(--color-ink-muted-80) !important;
+  margin: 0 !important;
+}
+
+.ui-growl-icon-close {
+  top: 14px !important;
+  right: 14px !important;
+  color: var(--color-ink-muted-48) !important;
+  opacity: 0.6 !important;
+  transition: opacity 0.2s ease !important;
+}
+
+.ui-growl-icon-close:hover {
+  opacity: 1 !important;
+}
+
+/* 5. PrimeFaces Framework Component Styling Overrides */
+
+/* PrimeFaces Inputs */
+.ui-inputfield {
+  background-color: var(--color-canvas) !important;
+  border: 1px solid var(--color-hairline) !important;
+  color: var(--color-ink) !important;
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif !important;
+  font-size: 17px !important;
+  border-radius: var(--rounded-pill) !important;
+  padding: var(--spacing-sm) var(--spacing-lg) !important;
+  height: 44px !important;
+  width: 100%;
+  box-sizing: border-box !important;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease !important;
+  box-shadow: none !important;
+}
+
+.ui-inputfield.ui-state-focus,
+.ui-inputfield:focus {
+  border-color: var(--color-primary) !important;
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.15) !important;
+  outline: none !important;
+}
+
+/* PrimeFaces Command Buttons base overrides */
+.ui-button {
+  background-color: var(--color-primary) !important;
+  border: none !important;
+  border-radius: var(--rounded-pill) !important;
+  padding: 11px var(--spacing-lg) !important;
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif !important;
+  font-size: 17px !important;
+  font-weight: 400 !important;
+  color: var(--color-on-primary) !important;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease !important;
+  cursor: pointer !important;
+  box-shadow: none !important;
+}
+
+.ui-button:hover {
+  background-color: var(--color-primary-focus) !important;
+}
+
+.ui-button:active {
+  transform: scale(0.95) !important;
+}
+
+.ui-button:focus {
+  outline: 2px solid var(--color-primary-focus) !important;
+  outline-offset: 2px !important;
+}
+
+.ui-button-text {
+  padding: 0 !important;
+}
+
+.ui-button-icon-left {
+  margin-right: 8px !important;
+}
+
+/* Custom secondary buttons mapped to JSF - higher specificity, avoiding generic blanket overrides */
+.ui-button.btn-secondary {
+  background-color: transparent !important;
+  color: var(--color-primary) !important;
+  border: 1.5px solid var(--color-primary) !important;
+}
+
+.ui-button.btn-secondary:hover {
+  background-color: rgba(0, 102, 204, 0.04) !important;
+}
+
+/* Custom action delete buttons mapped to JSF - higher specificity */
+.ui-button.btn-action-delete {
+  background-color: var(--color-error) !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 8px var(--spacing-sm) !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+}
+
+.ui-button.btn-action-delete:hover {
+  background-color: #e02b20 !important;
+}
+
+/* PrimeFaces DataTable */
+.ui-datatable {
+  background-color: var(--color-canvas) !important;
+  border-radius: var(--rounded-lg) !important;
+  overflow: hidden;
+  border: 1px solid var(--color-hairline) !important;
+}
+
+.ui-datatable-header {
+  background-color: var(--color-canvas-parchment) !important;
+  border: none !important;
+  color: var(--color-ink) !important;
+  padding: var(--spacing-sm) !important;
+  text-align: left;
+  font-size: 17px !important;
+  font-weight: 600 !important;
+  border-bottom: 1px solid var(--color-hairline) !important;
+}
+
+.ui-datatable table {
+  border-collapse: collapse;
+}
+
+.ui-datatable th {
+  background-color: var(--color-surface-pearl) !important;
+  color: var(--color-ink) !important;
+  border: none !important;
+  border-bottom: 1px solid var(--color-hairline) !important;
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif !important;
+  font-weight: 600 !important;
+  padding: var(--spacing-sm) !important;
+  font-size: 14px !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.ui-datatable td {
+  border: none !important;
+  border-bottom: 1px solid var(--color-divider-soft) !important;
+  padding: var(--spacing-sm) !important;
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif !important;
+  font-size: 17px !important;
+  color: var(--color-ink) !important;
+}
+
+.ui-datatable tr {
+  background-color: var(--color-canvas) !important;
+  transition: background-color 0.2s ease !important;
+}
+
+.ui-datatable tr:hover {
+  background-color: var(--color-canvas-parchment) !important;
+}
+
+/* PrimeFaces Paginator */
+.ui-paginator {
+  background-color: var(--color-canvas-parchment) !important;
+  border: none !important;
+  border-top: 1px solid var(--color-hairline) !important;
+  padding: 12px !important;
+}
+
+.ui-paginator .ui-paginator-page,
+.ui-paginator .ui-paginator-next,
+.ui-paginator .ui-paginator-last,
+.ui-paginator .ui-paginator-first,
+.ui-paginator .ui-paginator-prev {
+  color: var(--color-ink-muted-80) !important;
+  border: 1px solid transparent !important;
+  background-color: transparent !important;
+  border-radius: var(--rounded-sm) !important;
+  padding: 6px 12px !important;
+  font-size: 14px !important;
+  transition: all 0.2s ease !important;
+}
+
+.ui-paginator .ui-paginator-page:hover,
+.ui-paginator .ui-paginator-next:hover,
+.ui-paginator .ui-paginator-last:hover,
+.ui-paginator .ui-paginator-first:hover,
+.ui-paginator .ui-paginator-prev:hover {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  color: var(--color-ink) !important;
+}
+
+.ui-paginator .ui-paginator-page.ui-state-active {
+  background-color: var(--color-primary) !important;
+  color: var(--color-on-primary) !important;
+  font-weight: 600 !important;
+}
+
+/* PrimeFaces Confirmation Dialog */
+.ui-dialog {
+  border-radius: var(--rounded-lg) !important;
+  background-color: var(--color-canvas) !important;
+  border: 1px solid var(--color-hairline) !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1) !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+.ui-dialog-titlebar {
+  background-color: var(--color-canvas-parchment) !important;
+  border-bottom: 1px solid var(--color-hairline) !important;
+  padding: var(--spacing-sm) var(--spacing-lg) !important;
+  color: var(--color-ink) !important;
+  font-weight: 600 !important;
+}
+
+.ui-dialog-content {
+  padding: var(--spacing-lg) !important;
+  color: var(--color-ink) !important;
+  font-size: 17px !important;
+  background-color: var(--color-canvas) !important;
+}
+
+.ui-dialog-buttonpane {
+  background-color: var(--color-canvas-parchment) !important;
+  border-top: 1px solid var(--color-hairline) !important;
+  padding: var(--spacing-sm) var(--spacing-lg) !important;
+  margin: 0 !important;
+  text-align: right !important;
+}
+
+/* 6. Responsive Layout & Media Queries */
+
+/* Standard container */
+.container {
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+  box-sizing: border-box;
+}
+
+/* Store cards grid layout */
+.store-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--spacing-lg);
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+  box-sizing: border-box;
+}
+
+/* Desktop Breakpoint (up to 1440px max content width) */
+@media (max-width: 1440px) {
+  .store-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Small Desktop Breakpoint (1024px to 1068px) */
+@media (max-width: 1068px) {
+  .store-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  h1,
+  .hero-display,
+  .display-hero {
+    font-size: 40px;
+  }
+}
+
+/* Tablet Breakpoint (736px to 1023px) */
+@media (max-width: 1023px) {
+  .store-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .global-nav-links {
+    display: none;
+  }
+
+  .sub-nav-links {
+    display: none;
+  }
+}
+
+/* Large Phone / Portrait Tablet (641px to 735px) */
+@media (max-width: 735px) {
+  .product-tile-light,
+  .product-tile-dark,
+  .product-tile-parchment {
+    padding: 48px 24px;
+  }
+}
+
+/* Phone Breakpoint (420px to 640px) */
+@media (max-width: 640px) {
+  .store-grid {
+    grid-template-columns: 1fr;
+  }
+
+  h1,
+  .hero-display,
+  .display-hero {
+    font-size: 34px;
+  }
+
+  .store-utility-card .book-cover {
+    max-width: 80%;
+  }
+}
+
+/* Small Phone Breakpoint (419px and below) */
+@media (max-width: 419px) {
+  h1,
+  .hero-display,
+  .display-hero {
+    font-size: 28px;
+  }
+
+  .sub-nav-frosted {
+    padding: 0 16px;
+  }
+
+  .product-tile-light,
+  .product-tile-dark,
+  .product-tile-parchment {
+    padding: 48px 16px;
+  }
+}
+
+/* Prevent card squishing in the catalog's two-column app grid */
+.app-grid .store-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+@media (max-width: 1200px) {
+  .app-grid .store-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 640px) {
+  .app-grid .store-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
