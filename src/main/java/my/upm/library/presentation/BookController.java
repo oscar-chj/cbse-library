@@ -42,21 +42,34 @@ public class BookController implements Serializable {
         try {
             // Check for duplicate ISBN
             Book existingBook = bookService.findByIsbn(newBook.getIsbn());
-            if (existingBook != null) {
+            if (existingBook != null && (newBook.getId() == null || !existingBook.getId().equals(newBook.getId()))) {
                 FacesContext.getCurrentInstance().addMessage(null,
                         new FacesMessage(FacesMessage.SEVERITY_ERROR, "Duplicate ISBN", "A book with this ISBN already exists."));
                 return;
             }
 
+            boolean isEdit = newBook.getId() != null;
             bookService.save(newBook);
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Book '" + newBook.getTitle() + "' was successfully added."));
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Book '" + newBook.getTitle() + "' " + (isEdit ? "was successfully updated." : "was successfully added.")));
             newBook = new Book(); // Reset input form
             refreshBooks(); // Refresh list
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Failed to save book: " + e.getMessage()));
         }
+    }
+
+    public void prepareEdit(Book book) {
+        newBook = new Book();
+        newBook.setId(book.getId());
+        newBook.setTitle(book.getTitle());
+        newBook.setAuthor(book.getAuthor());
+        newBook.setIsbn(book.getIsbn());
+    }
+
+    public void cancelEdit() {
+        newBook = new Book();
     }
 
     public void deleteBook(Long id) {
