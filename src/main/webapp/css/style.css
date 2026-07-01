@@ -344,6 +344,7 @@ p {
 
 /* Store Utility Card & Book Cover styles */
 .store-utility-card {
+  position: relative !important;
   background-color: var(--color-canvas) !important;
   color: var(--color-ink) !important;
   border: 1px solid var(--color-hairline) !important;
@@ -558,9 +559,10 @@ p {
   box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.15);
 }
 
-/* 4. macOS/iOS Style Toast/Growl Notification (Top-Right) */
+/* 4. Toast/Growl Notification (Top-Right) */
 .ui-growl,
 .toast-container {
+  position: fixed !important;
   top: 20px !important;
   right: 20px !important;
   z-index: 9999 !important;
@@ -639,6 +641,8 @@ p {
 }
 
 .ui-growl-icon-close {
+  position: absolute !important;
+  cursor: pointer !important;
   top: 14px !important;
   right: 14px !important;
   color: var(--color-ink-muted-48) !important;
@@ -650,9 +654,7 @@ p {
   opacity: 1 !important;
 }
 
-/* 5. PrimeFaces Framework Component Styling Overrides */
-
-/* PrimeFaces Inputs */
+/* 5. Input Field Styles */
 .ui-inputfield {
   background-color: var(--color-canvas) !important;
   border: 1px solid var(--color-hairline) !important;
@@ -681,7 +683,7 @@ p {
   outline: none !important;
 }
 
-/* PrimeFaces Command Buttons base overrides */
+/* Button Styles */
 .ui-button {
   background-color: var(--color-primary) !important;
   border: none !important;
@@ -724,7 +726,7 @@ p {
   margin-right: 8px !important;
 }
 
-/* Custom secondary buttons mapped to JSF - higher specificity, avoiding generic blanket overrides */
+/* Secondary Buttons */
 .ui-button.btn-secondary {
   background-color: transparent !important;
   color: var(--color-primary) !important;
@@ -735,7 +737,7 @@ p {
   background-color: rgba(0, 102, 204, 0.04) !important;
 }
 
-/* Custom action delete buttons mapped to JSF - higher specificity */
+/* Delete Action Buttons */
 .ui-button.btn-action-delete {
   background-color: var(--color-error) !important;
   color: #ffffff !important;
@@ -747,138 +749,6 @@ p {
 
 .ui-button.btn-action-delete:hover {
   background-color: #e02b20 !important;
-}
-
-/* PrimeFaces DataTable */
-.ui-datatable {
-  background-color: var(--color-canvas) !important;
-  border-radius: var(--rounded-lg) !important;
-  overflow: hidden;
-  border: 1px solid var(--color-hairline) !important;
-}
-
-.ui-datatable-header {
-  background-color: var(--color-canvas-parchment) !important;
-  border: none !important;
-  color: var(--color-ink) !important;
-  padding: var(--spacing-sm) !important;
-  text-align: left;
-  font-size: 17px !important;
-  font-weight: 600 !important;
-  border-bottom: 1px solid var(--color-hairline) !important;
-}
-
-.ui-datatable table {
-  border-collapse: collapse;
-}
-
-.ui-datatable th {
-  background-color: var(--color-surface-pearl) !important;
-  color: var(--color-ink) !important;
-  border: none !important;
-  border-bottom: 1px solid var(--color-hairline) !important;
-  font-family:
-    "Inter",
-    system-ui,
-    -apple-system,
-    sans-serif !important;
-  font-weight: 600 !important;
-  padding: var(--spacing-sm) !important;
-  font-size: 14px !important;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.ui-datatable td {
-  border: none !important;
-  border-bottom: 1px solid var(--color-divider-soft) !important;
-  padding: var(--spacing-sm) !important;
-  font-family:
-    "Inter",
-    system-ui,
-    -apple-system,
-    sans-serif !important;
-  font-size: 17px !important;
-  color: var(--color-ink) !important;
-}
-
-.ui-datatable tr {
-  background-color: var(--color-canvas) !important;
-  transition: background-color 0.2s ease !important;
-}
-
-.ui-datatable tr:hover {
-  background-color: var(--color-canvas-parchment) !important;
-}
-
-/* PrimeFaces Paginator */
-.ui-paginator {
-  background-color: var(--color-canvas-parchment) !important;
-  border: none !important;
-  border-top: 1px solid var(--color-hairline) !important;
-  padding: 12px !important;
-}
-
-.ui-paginator .ui-paginator-page,
-.ui-paginator .ui-paginator-next,
-.ui-paginator .ui-paginator-last,
-.ui-paginator .ui-paginator-first,
-.ui-paginator .ui-paginator-prev {
-  color: var(--color-ink-muted-80) !important;
-  border: 1px solid transparent !important;
-  background-color: transparent !important;
-  border-radius: var(--rounded-sm) !important;
-  padding: 6px 12px !important;
-  font-size: 14px !important;
-  transition: all 0.2s ease !important;
-}
-
-.ui-paginator .ui-paginator-page:hover,
-.ui-paginator .ui-paginator-next:hover,
-.ui-paginator .ui-paginator-last:hover,
-.ui-paginator .ui-paginator-first:hover,
-.ui-paginator .ui-paginator-prev:hover {
-  background-color: rgba(0, 0, 0, 0.05) !important;
-  color: var(--color-ink) !important;
-}
-
-.ui-paginator .ui-paginator-page.ui-state-active {
-  background-color: var(--color-primary) !important;
-  color: var(--color-on-primary) !important;
-  font-weight: 600 !important;
-}
-
-/* PrimeFaces Confirmation Dialog */
-.ui-dialog {
-  border-radius: var(--rounded-lg) !important;
-  background-color: var(--color-canvas) !important;
-  border: 1px solid var(--color-hairline) !important;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1) !important;
-  padding: 0 !important;
-  overflow: hidden !important;
-}
-
-.ui-dialog-titlebar {
-  background-color: var(--color-canvas-parchment) !important;
-  border-bottom: 1px solid var(--color-hairline) !important;
-  padding: var(--spacing-sm) var(--spacing-lg) !important;
-  color: var(--color-ink) !important;
-  font-weight: 600 !important;
-}
-
-.ui-dialog-content {
-  padding: var(--spacing-lg) !important;
-  color: var(--color-ink) !important;
-  font-size: 17px !important;
-  background-color: var(--color-canvas) !important;
-}
-
-.ui-dialog-buttonpane {
-  background-color: var(--color-canvas-parchment) !important;
-  border-top: 1px solid var(--color-hairline) !important;
-  padding: var(--spacing-sm) var(--spacing-lg) !important;
-  margin: 0 !important;
-  text-align: right !important;
 }
 
 /* 6. Responsive Layout & Media Queries */
@@ -1000,3 +870,292 @@ p {
   }
 }
 
+/* Confirmation Modal */
+.modal-backdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 10000;
+  align-items: center;
+  justify-content: center;
+}
+.modal-backdrop.show {
+  display: flex;
+}
+.custom-modal {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--rounded-lg);
+  width: 320px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  padding: 20px;
+  font-family: inherit;
+  animation: modalPop 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes modalPop {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.custom-modal-title {
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  color: var(--color-ink);
+}
+.custom-modal-message {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--color-ink-muted-80);
+  margin: 0 0 20px 0;
+}
+.custom-modal-buttons {
+  display: flex;
+  gap: 10px;
+}
+.custom-modal-btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: var(--rounded-sm);
+  font-size: 15px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.custom-modal-btn-cancel {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: var(--color-primary);
+}
+.custom-modal-btn-cancel:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.custom-modal-btn-confirm {
+  background-color: var(--color-error);
+  color: #ffffff;
+  font-weight: 600;
+}
+.custom-modal-btn-confirm:hover {
+  background-color: #e02b20;
+}
+
+/* Layout and Page Styling */
+body {
+  background-color: var(--color-canvas-parchment);
+  margin: 0;
+  padding: 0;
+}
+.app-container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+.app-grid {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: var(--spacing-lg);
+  width: 100%;
+}
+@media (max-width: 1024px) {
+  .app-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.glass-card {
+  background-color: var(--color-canvas);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--rounded-lg);
+  padding: var(--spacing-lg);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+.card-title-group {
+  margin-bottom: var(--spacing-lg);
+  border-bottom: 1px solid var(--color-divider-soft);
+  padding-bottom: var(--spacing-sm);
+}
+.card-title-group h2 {
+  font-size: 21px;
+  font-weight: 600;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-ink);
+}
+.card-title-group p {
+  font-size: 14px;
+  color: var(--color-ink-muted-80);
+  margin: 6px 0 0 0;
+}
+.form-field {
+  margin-bottom: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xxs);
+}
+.form-field label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+.search-wrapper {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+  align-items: center;
+}
+
+/* Separated Utility & Page Styles */
+.global-nav-spacer {
+  width: 50px;
+}
+.form-submit-btn {
+  width: 100%;
+  margin-top: 10px;
+}
+.empty-catalog-msg {
+  text-align: center;
+  padding: 40px;
+  color: var(--color-ink-muted-80);
+  font-style: italic;
+}
+.store-grid-wrapper {
+  padding: 0;
+  margin: 0;
+}
+.edit-card-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-hairline);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  color: var(--color-primary);
+  text-decoration: none;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+.book-cover-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 30px 24px 30px 32px;
+  color: #ffffff;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+.book-cover-header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.book-cover-catalog-tag {
+  font-size: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.6);
+}
+.book-cover-title {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #ffffff;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  overflow-wrap: break-word;
+}
+.book-cover-author {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.75);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.book-details {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-grow: 1;
+}
+.book-title-text {
+  margin: 0;
+  color: var(--color-ink);
+}
+.store-utility-card .book-details p {
+  margin: 0;
+  color: var(--color-ink-muted-80);
+}
+.book-details-isbn {
+  color: var(--color-ink-muted-48);
+  font-family: monospace;
+  margin-top: auto;
+}
+.book-details-id {
+  color: var(--color-ink-muted-48);
+}
+.book-card-actions {
+  margin-top: 15px;
+  display: flex;
+  justify-content: flex-end;
+}
+.delete-card-btn {
+  color: var(--color-error) !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  border: none !important;
+  background: transparent !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+}
+.d-none {
+  display: none !important;
+}
+.footer {
+  background-color: var(--color-canvas-parchment);
+  padding: var(--spacing-xxl) 0;
+  color: var(--color-ink-muted-80);
+  font-family: inherit;
+}
+.footer-fine-print {
+  color: var(--color-ink-muted-48);
+  font-size: 11px;
+}
+.delete-confirm-book-title {
+  font-weight: 600;
+}

@@ -9,7 +9,7 @@
     <version>1.0.0</version>
     <packaging>war</packaging>
     <name>Library Catalog Management System</name>
-    <description>A Java EE web-based book catalog management system built with JSF, PrimeFaces, EJB, JPA, and MySQL</description>
+    <description>A Java EE web-based book catalog management system built with JSF, EJB, JPA, and MySQL</description>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -25,13 +25,6 @@
             <artifactId>javaee-api</artifactId>
             <version>8.0.1</version>
             <scope>provided</scope>
-        </dependency>
-
-        <!-- PrimeFaces UI Framework -->
-        <dependency>
-            <groupId>org.primefaces</groupId>
-            <artifactId>primefaces</artifactId>
-            <version>12.0.0</version>
         </dependency>
 
         <!-- MySQL Connector -->

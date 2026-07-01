@@ -21,181 +21,14 @@
       type="text/css"
       href="#{request.contextPath}/css/style.css?v=1.1"
     />
-
-    <style>
-      /* Apple-style Confirmation Modal */
-      .modal-backdrop {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.4);
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-        z-index: 10000;
-        align-items: center;
-        justify-content: center;
-      }
-      .modal-backdrop.show {
-        display: flex;
-      }
-      .apple-modal {
-        background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid var(--color-hairline);
-        border-radius: var(--rounded-lg);
-        width: 320px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-        text-align: center;
-        padding: 20px;
-        font-family: inherit;
-        animation: modalPop 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      }
-      @keyframes modalPop {
-        from {
-          transform: scale(0.9);
-          opacity: 0;
-        }
-        to {
-          transform: scale(1);
-          opacity: 1;
-        }
-      }
-      .apple-modal-title {
-        font-size: 17px;
-        font-weight: 600;
-        margin: 0 0 8px 0;
-        color: var(--color-ink);
-      }
-      .apple-modal-message {
-        font-size: 13px;
-        font-weight: 400;
-        line-height: 1.4;
-        color: var(--color-ink-muted-80);
-        margin: 0 0 20px 0;
-      }
-      .apple-modal-buttons {
-        display: flex;
-        gap: 10px;
-      }
-      .apple-modal-btn {
-        flex: 1;
-        padding: 10px;
-        border-radius: var(--rounded-sm);
-        font-size: 15px;
-        font-weight: 500;
-        border: none;
-        cursor: pointer;
-        transition: background-color 0.2s;
-      }
-      .apple-modal-btn-cancel {
-        background-color: rgba(0, 0, 0, 0.05);
-        color: var(--color-primary);
-      }
-      .apple-modal-btn-cancel:hover {
-        background-color: rgba(0, 0, 0, 0.1);
-      }
-      .apple-modal-btn-confirm {
-        background-color: var(--color-error);
-        color: #ffffff;
-        font-weight: 600;
-      }
-      .apple-modal-btn-confirm:hover {
-        background-color: #e02b20;
-      }
-
-      /* Layout and Page Styling adapted to Apple Design System */
-      body {
-        background-color: var(--color-canvas-parchment);
-        margin: 0;
-        padding: 0;
-      }
-      .app-container {
-        width: 100%;
-        max-width: 1440px;
-        margin: 0 auto;
-        padding: var(--spacing-lg);
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing-lg);
-      }
-      .app-grid {
-        display: grid;
-        grid-template-columns: 360px 1fr;
-        gap: var(--spacing-lg);
-        width: 100%;
-      }
-      @media (max-width: 1024px) {
-        .app-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-      .glass-card {
-        background-color: var(--color-canvas);
-        border: 1px solid var(--color-hairline);
-        border-radius: var(--rounded-lg);
-        padding: var(--spacing-lg);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-      }
-      .card-title-group {
-        margin-bottom: var(--spacing-lg);
-        border-bottom: 1px solid var(--color-divider-soft);
-        padding-bottom: var(--spacing-sm);
-      }
-      .card-title-group h2 {
-        font-size: 21px;
-        font-weight: 600;
-        margin: 0;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        color: var(--color-ink);
-      }
-      .card-title-group p {
-        font-size: 14px;
-        color: var(--color-ink-muted-80);
-        margin: 6px 0 0 0;
-      }
-      .form-field {
-        margin-bottom: var(--spacing-md);
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing-xxs);
-      }
-      .form-field label {
-        font-size: 14px;
-        font-weight: 600;
-        color: var(--color-ink);
-      }
-      .search-wrapper {
-        display: flex;
-        gap: var(--spacing-sm);
-        margin-bottom: var(--spacing-lg);
-        align-items: center;
-      }
-    </style>
   </h:head>
 
   <h:body>
-    <!-- macOS/iOS Style Toast/Growl Notification Container -->
-    <h:panelGroup
-      id="growl"
-      layout="block"
-      styleClass="toast-container"
-      style="position: fixed; top: 20px; right: 20px; z-index: 9999"
-    >
+    <!-- Toast/Growl Notification Container -->
+    <h:panelGroup id="growl" layout="block" styleClass="toast-container">
       <ui:repeat value="#{facesContext.messageList}" var="msg">
         <div class="toast-notification">
-          <span
-            class="ui-growl-icon-close"
-            style="position: absolute; cursor: pointer"
-            onclick="dismissToast(this)"
-            >×</span
-          >
+          <span class="ui-growl-icon-close">×</span>
           <div class="ui-growl-item">
             <span
               class="ui-growl-image ui-growl-image-#{msg.severity.ordinal == 1 ? 'info' : (msg.severity.ordinal == 2 ? 'warn' : 'error')}"
@@ -214,7 +47,7 @@
       <div class="global-nav-links">
         <a href="#">Catalog</a>
       </div>
-      <div style="width: 50px"></div>
+      <div class="global-nav-spacer"></div>
       <!-- spacer to balance the layout -->
     </nav>
 
@@ -231,13 +64,11 @@
           <h:panelGroup id="addPanel" layout="block">
             <div class="card-title-group">
               <h2>
-                #{bookController.newBook.id == null ? 'Add Book Asset' : 'Edit
-                Book Asset'}
+                #{bookController.newBook.id == null ? 'Add Book' : 'Edit Book'}
               </h2>
               <p>
-                #{bookController.newBook.id == null ? 'Register a new book in
-                the secure database catalog.' : 'Update the selected book
-                details.'}
+                #{bookController.newBook.id == null ? 'Register a new book.' :
+                'Update the selected book.'}
               </p>
             </div>
 
@@ -281,8 +112,7 @@
               <h:commandButton
                 value="#{bookController.newBook.id == null ? 'Save to Catalog' : 'Save Changes'}"
                 action="#{bookController.saveBook}"
-                styleClass="ui-button"
-                style="width: 100%; margin-top: 10px"
+                styleClass="ui-button form-submit-btn"
               >
                 <f:ajax
                   execute="@form"
@@ -294,8 +124,7 @@
                 value="Cancel"
                 action="#{bookController.cancelEdit}"
                 rendered="#{bookController.newBook.id != null}"
-                styleClass="ui-button btn-secondary"
-                style="width: 100%; margin-top: 10px"
+                styleClass="ui-button btn-secondary form-submit-btn"
               >
                 <f:ajax execute="@this" render=":addPanel" />
               </h:commandButton>
@@ -306,8 +135,8 @@
         <!-- Right Panel: Catalog List and Search -->
         <main class="glass-card">
           <div class="card-title-group">
-            <h2>Active Book Inventory</h2>
-            <p>Search, filter, and permanently manage library assets.</p>
+            <h2>Book Inventory</h2>
+            <p>Search, filter, and manage books.</p>
           </div>
 
           <h:form id="form-list">
@@ -339,25 +168,18 @@
 
             <!-- Responsive Grid Container instead of Table -->
             <h:panelGroup id="booksGrid" layout="block">
-              <!-- Empty Message -->
               <h:panelGroup
                 rendered="#{empty bookController.books}"
                 layout="block"
-                style="
-                  text-align: center;
-                  padding: 40px;
-                  color: var(--color-ink-muted-80);
-                  font-style: italic;
-                "
+                styleClass="empty-catalog-msg"
               >
-                No book assets found matching the query.
+                No books found.
               </h:panelGroup>
 
               <h:panelGroup
                 rendered="#{not empty bookController.books}"
                 layout="block"
-                styleClass="store-grid"
-                style="padding: 0; margin: 0"
+                styleClass="store-grid store-grid-wrapper"
               >
                 <ui:repeat
                   id="booksRepeat"
@@ -365,33 +187,11 @@
                   var="book"
                   varStatus="status"
                 >
-                  <div class="store-utility-card" style="position: relative">
+                  <div class="store-utility-card">
                     <!-- Edit Button floating in top right -->
                     <h:commandLink
                       action="#{bookController.prepareEdit(book)}"
                       styleClass="edit-card-btn"
-                      style="
-                        position: absolute;
-                        top: 12px;
-                        right: 12px;
-                        z-index: 10;
-                        background: rgba(255, 255, 255, 0.85);
-                        backdrop-filter: blur(5px);
-                        -webkit-backdrop-filter: blur(5px);
-                        width: 28px;
-                        height: 28px;
-                        border-radius: 50%;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        border: 1px solid var(--color-hairline);
-                        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-                        color: var(--color-primary);
-                        text-decoration: none;
-                        transition:
-                          background 0.2s,
-                          transform 0.2s;
-                      "
                       title="Edit Book"
                     >
                       <f:ajax render=":addPanel" />
@@ -461,144 +261,42 @@
                           opacity="0.1"
                         />
                         <foreignObject x="0" y="0" width="300" height="400">
-                          <div
-                            style="
-                              display: flex;
-                              flex-direction: column;
-                              justify-content: space-between;
-                              height: 100%;
-                              box-sizing: border-box;
-                              padding: 30px 24px 30px 32px;
-                              color: #ffffff;
-                              font-family:
-                                &quot;Inter&quot;,
-                                -apple-system,
-                                BlinkMacSystemFont,
-                                &quot;Segoe UI&quot;,
-                                Roboto,
-                                sans-serif;
-                            "
-                          >
-                            <div
-                              style="
-                                display: flex;
-                                flex-direction: column;
-                                gap: 12px;
-                              "
-                            >
-                              <div
-                                style="
-                                  font-size: 8px;
-                                  font-weight: 700;
-                                  text-transform: uppercase;
-                                  letter-spacing: 2px;
-                                  color: rgba(255, 255, 255, 0.6);
-                                "
-                              >
+                          <div class="book-cover-content">
+                            <div class="book-cover-header">
+                              <div class="book-cover-catalog-tag">
                                 BOOK CATALOG
                               </div>
-                              <div
-                                style="
-                                  font-size: 22px;
-                                  font-weight: 700;
-                                  line-height: 1.25;
-                                  color: #ffffff;
-                                  display: -webkit-box;
-                                  -webkit-line-clamp: 6;
-                                  -webkit-box-orient: vertical;
-                                  overflow: hidden;
-                                  text-overflow: ellipsis;
-                                  overflow-wrap: break-word;
-                                "
-                              >
-                                #{book.title}
-                              </div>
+                              <div class="book-cover-title">#{book.title}</div>
                             </div>
-                            <div
-                              style="
-                                font-size: 13px;
-                                font-weight: 500;
-                                color: rgba(255, 255, 255, 0.75);
-                                white-space: nowrap;
-                                overflow: hidden;
-                                text-overflow: ellipsis;
-                              "
-                            >
-                              #{book.author}
-                            </div>
+                            <div class="book-cover-author">#{book.author}</div>
                           </div>
                         </foreignObject>
                       </svg>
                     </div>
 
-                    <div
-                      class="book-details"
-                      style="
-                        display: flex;
-                        flex-direction: column;
-                        gap: 6px;
-                        flex-grow: 1;
-                      "
-                    >
-                      <h4
-                        class="caption-strong book-title-text"
-                        style="margin: 0; color: var(--color-ink)"
-                      >
+                    <div class="book-details">
+                      <h4 class="caption-strong book-title-text">
                         #{book.title}
                       </h4>
-                      <p
-                        class="caption"
-                        style="margin: 0; color: var(--color-ink-muted-80)"
-                      >
-                        By #{book.author}
-                      </p>
-                      <div
-                        class="fine-print"
-                        style="
-                          color: var(--color-ink-muted-48);
-                          font-family: monospace;
-                          margin-top: auto;
-                        "
-                      >
+                      <p class="caption">By #{book.author}</p>
+                      <div class="fine-print book-details-isbn">
                         ISBN: #{book.isbn}
                       </div>
-                      <div
-                        class="fine-print"
-                        style="color: var(--color-ink-muted-48)"
-                      >
+                      <div class="fine-print book-details-id">
                         Database ID: #{book.id}
                       </div>
                     </div>
 
                     <!-- Delete button intercepting with JS modal -->
-                    <div
-                      style="
-                        margin-top: 15px;
-                        display: flex;
-                        justify-content: flex-end;
-                      "
-                    >
-                      <button
-                        type="button"
-                        class="text-link"
-                        style="
-                          color: var(--color-error);
-                          font-size: 14px;
-                          font-weight: 600;
-                          border: none;
-                          background: transparent;
-                          cursor: pointer;
-                          padding: 0;
-                        "
-                        onclick="showDeleteConfirm(this)"
-                      >
+                    <div class="book-card-actions">
+                      <button type="button" class="text-link delete-card-btn">
                         Delete
                       </button>
 
                       <!-- Hidden actual trigger for AJAX deletion -->
                       <h:commandButton
                         id="hiddenDeleteTrigger"
-                        style="display: none"
+                        styleClass="d-none"
                         action="#{bookController.deleteBook(book.id)}"
                       >
                         <f:ajax
@@ -617,54 +315,38 @@
     </div>
 
     <!-- Parchment Footer -->
-    <footer
-      class="footer"
-      style="
-        background-color: var(--color-canvas-parchment);
-        padding: var(--spacing-xxl) 0;
-        color: var(--color-ink-muted-80);
-        font-family: inherit;
-      "
-    >
-      <div
-        style="
-          max-width: 1440px;
-          margin: 0 auto;
-          padding: 0 var(--spacing-lg);
-          box-sizing: border-box;
-        "
-      >
-        <span
-          class="fine-print"
-          style="color: var(--color-ink-muted-48); font-size: 11px"
-          >Made with love from Group Goatware</span
-        >
+    <footer class="footer">
+      <div class="container">
+        <span class="fine-print footer-fine-print">
+          Made with love from Group Goatware
+        </span>
       </div>
     </footer>
 
-    <!-- Apple-style Confirm Modal -->
+    <!-- Confirmation Modal -->
     <div id="deleteConfirmModal" class="modal-backdrop">
-      <div class="apple-modal">
-        <h3 class="apple-modal-title">Delete Book Asset</h3>
-        <p class="apple-modal-message">
-          Are you sure you want to permanently delete "<span
+      <div class="custom-modal">
+        <h3 class="custom-modal-title">Delete Book</h3>
+        <p class="custom-modal-message">
+          Are you sure you want to permanently delete "
+          <span
             id="deleteConfirmBookTitle"
-            style="font-weight: 600"
-          ></span
-          >" from the library catalog?
+            class="delete-confirm-book-title"
+          ></span>
+          " from the library catalog?
         </p>
-        <div class="apple-modal-buttons">
+        <div class="custom-modal-buttons">
           <button
             type="button"
-            class="apple-modal-btn apple-modal-btn-cancel"
-            onclick="closeDeleteConfirm()"
+            class="custom-modal-btn custom-modal-btn-cancel"
+            id="btn-cancel-delete"
           >
             Cancel
           </button>
           <button
             type="button"
-            class="apple-modal-btn apple-modal-btn-confirm"
-            onclick="proceedDelete()"
+            class="custom-modal-btn custom-modal-btn-confirm"
+            id="btn-confirm-delete"
           >
             Delete
           </button>
@@ -672,87 +354,9 @@
       </div>
     </div>
 
-    <script type="text/javascript">
-      //<![CDATA[
-      let activeHiddenTrigger = null;
-
-      function showDeleteConfirm(buttonEl) {
-        const modal = document.getElementById("deleteConfirmModal");
-        const titleSpan = document.getElementById("deleteConfirmBookTitle");
-        const card = buttonEl.closest(".store-utility-card");
-        if (card) {
-          if (titleSpan) {
-            const titleEl = card.querySelector(".book-title-text");
-            titleSpan.textContent = titleEl ? titleEl.textContent : "this book";
-          }
-          activeHiddenTrigger = card.querySelector(
-            '[id$="hiddenDeleteTrigger"]',
-          );
-        }
-        if (modal) {
-          modal.classList.add("show");
-        }
-      }
-
-      function closeDeleteConfirm() {
-        const modal = document.getElementById("deleteConfirmModal");
-        if (modal) {
-          modal.classList.remove("show");
-        }
-        activeHiddenTrigger = null;
-      }
-
-      function proceedDelete() {
-        if (activeHiddenTrigger) {
-          activeHiddenTrigger.click();
-        }
-        closeDeleteConfirm();
-      }
-      function dismissToast(closeBtn) {
-        const toast = closeBtn.closest(".toast-notification");
-        if (toast) {
-          toast.style.opacity = "0";
-          setTimeout(() => {
-            if (toast.parentNode) {
-              toast.parentNode.removeChild(toast);
-            }
-          }, 300);
-        }
-      }
-
-      function initToasts() {
-        const notifications = document.querySelectorAll(
-          ".toast-notification:not(.initialized)",
-        );
-        notifications.forEach((el) => {
-          el.classList.add("initialized");
-          // Auto-dismiss after 4 seconds
-          setTimeout(() => {
-            el.style.opacity = "0";
-            setTimeout(() => {
-              if (el.parentNode) {
-                el.parentNode.removeChild(el);
-              }
-            }, 300);
-          }, 4000);
-        });
-      }
-
-      function registerAjaxListener() {
-        if (window.jsf) {
-          jsf.ajax.addOnEvent(function (data) {
-            if (data.status === "success") {
-              initToasts();
-            }
-          });
-        }
-      }
-
-      document.addEventListener("DOMContentLoaded", () => {
-        initToasts();
-        registerAjaxListener();
-      });
-      //]]>
-    </script>
+    <script
+      type="text/javascript"
+      src="#{request.contextPath}/js/script.js"
+    ></script>
   </h:body>
 </html>
